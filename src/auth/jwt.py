@@ -19,14 +19,13 @@ def generate_jwt(data: dict) -> str:
 
 def validate_token(token: str) -> str:
     try:
-        print(token)
         # Se intenta desencriptar el token
         payload = jwt.decode(token, secret_key, algorithms=[algorithm])
         username: str =  payload.get("username")
         if not username:
             raise HTTPException(
                 status_code=401,
-                detail="Token vacio",
+                detail="Empty Token",
                 headers={"WWW-Authenticate": "Bearer"},
             )
         return username
@@ -34,13 +33,13 @@ def validate_token(token: str) -> str:
     except ExpiredSignatureError:
         raise  HTTPException(
             status_code=401,
-            detail="Token expirado",
+            detail="Expired Token",
             headers={"WWW-Authenticate": "Bearer"},
         )
     
     except InvalidTokenError:
         raise HTTPException(
             status_code=401,
-            detail="Token invalido",
+            detail="Invalid Token",
             headers={"WWW-Authenticate": "Bearer"},
         )
