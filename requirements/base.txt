@@ -4,3 +4,4 @@ pydantic-settings
 bcrypt
 pyjwt
 pytest
+uvicorn
