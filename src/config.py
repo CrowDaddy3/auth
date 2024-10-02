@@ -3,6 +3,9 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # Se declaran las variables de entorno a utilizar
+    secret_key: str
+    algorithm : str
+    expire_time: int
     database_url: str
 
     class Config:

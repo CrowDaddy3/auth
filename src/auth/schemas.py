@@ -16,3 +16,12 @@ class UserRead(UserBase):
 
     class Config:
         from_attributes = True
+
+
+class Auth(BaseModel):
+    username: str
+    password: str
+
+
+class Token(BaseModel):
+    token: str
