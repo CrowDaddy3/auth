@@ -1,12 +1,12 @@
-from sqlalchemy import Colum, Integer, String
+from sqlalchemy import Column, Integer, String
 from db import Base
 
 
 class User(Base):
-    __tablename__ = "users"
+    __tablename__ = "user"
 
-    id: int =  Colum(Integer, primary_key=True, index=True)
-    username: str = Colum(String, index=True, unique=True)
-    name: str = Colum(String, index=True)
-    last_name: str = Colum(String)
-    password : str = Colum(String)
+    id: int =  Column(Integer, primary_key=True, index=True)
+    username: str = Column(String, index=True, unique=True)
+    name: str = Column(String, index=True)
+    last_name: str = Column(String)
+    password : str = Column(String)

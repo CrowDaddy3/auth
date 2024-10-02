@@ -14,3 +14,11 @@ Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 #Se crea la base de datos
 Base = declarative_base()
+
+
+def get_db():
+    db = Session()
+    try:
+        yield db
+    finally:
+        db.close()
