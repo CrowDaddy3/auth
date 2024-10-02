@@ -25,6 +25,7 @@ def create_user(user: CreateUser, db: Session = Depends(get_db)):
         password=hash_pasword(user.password)
         )
     
+    # Se crea el usuario en la base de datos
     db.add(user_)
     db.commit()
     db.refresh(user_)
@@ -32,6 +33,7 @@ def create_user(user: CreateUser, db: Session = Depends(get_db)):
 
 @router.post("/login", tags=["Autenticación"])
 def login(user: Auth, db: Session = Depends(get_db)):
+    # Verificar si el usuario existe
     user_ = db.query(User).filter(User.username == user.username).first()
     if not user_:
         raise HTTPException(
@@ -45,6 +47,7 @@ def login(user: Auth, db: Session = Depends(get_db)):
             detail="Wrong username or password",
         )
     
+    #Se genera el token
     token = generate_jwt(
         data={"username": user_.username}
     )
@@ -55,6 +58,7 @@ def login(user: Auth, db: Session = Depends(get_db)):
 
 @router.post("/refresh-token", tags=["Autenticación"])
 def refresh_token(token: Token, db: Session = Depends(get_db)):
+    # Verificar si el token es válido
     user: str = vt(token.token)
     if user:
         user_ = db.query(User).filter(User.username == user).first()
@@ -64,6 +68,7 @@ def refresh_token(token: Token, db: Session = Depends(get_db)):
                 detail="Invalid Token",
                 headers={"WWW-Autenticate": "Bearer"}
             )
+        # Se genera un nuevo token
         token =  generate_jwt(data={"username": user_.username})
         response: dict = {"token": token, "token_type": "bearer"}
         return JSONResponse(content={"data": response})
@@ -71,8 +76,10 @@ def refresh_token(token: Token, db: Session = Depends(get_db)):
 @router.post(
     "/validate-token", tags=["Autenticación"], response_model=UserRead)
 def validate_token(token: Token, db: Session = Depends(get_db)):
+    # Verificar si el token es válido
     user: str = vt(token.token)
     if user:
+        #  Se obtiene el usuario
         user_ = db.query(User).filter(User.username == user).first()
         if not user_:
             raise HTTPException(
@@ -84,4 +91,5 @@ def validate_token(token: Token, db: Session = Depends(get_db)):
 
 @router.post("/logout", tags=["Autenticación"])
 def logout():
+    # Cierra sesión
     return JSONResponse(content={"message": "Logged out successfully"})

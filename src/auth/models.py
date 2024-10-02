@@ -3,6 +3,7 @@ from db import Base
 
 
 class User(Base):
+    # Modelo para  la tabla de usuarios
     __tablename__ = "user"
 
     id: int =  Column(Integer, primary_key=True, index=True)
