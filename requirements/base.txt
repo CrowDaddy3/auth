@@ -1,0 +1,6 @@
+fastapi[standard]
+sqlalchemy
+pydantic-settings
+bcrypt
+pyjwt
+pytest
