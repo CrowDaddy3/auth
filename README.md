@@ -31,12 +31,12 @@ source env/bin/activate
 pip install -r requirements/base.txt
 ```
 
-*** 5. Es necesario crear un archivo .env con las variables de entorno para que el proyecto funcione de manera correcta, las variables de entorno necesarias son las siguientes: ***
+***5. Es necesario crear un archivo .env con las variables de entorno para que el proyecto funcione de manera correcta, las variables de entorno necesarias son las siguientes:***
 
-- *** SECRET_KEY="your_secret_key" ***
-- *** ALGORITHM="HS256" ***
-- *** EXPIRE_TIME= time for the token duration in minutes ***
-- *** DATABASE_URL="sqlite:///./your_db.db" ***
+- ***SECRET_KEY="your_secret_key"***
+- ***ALGORITHM="HS256"***
+- ***EXPIRE_TIME= time for the token duration in minutes***
+- ***DATABASE_URL="sqlite:///./your_db.db"***
 
 6. Una vez instaladas todas las dependencias y generado el archivo .env, puedes ejecutar el proyecto con el siguiente comando:
 
