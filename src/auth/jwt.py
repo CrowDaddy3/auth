@@ -2,7 +2,7 @@ import jwt
 from datetime import datetime, timedelta, timezone
 from fastapi import HTTPException
 from jwt import ExpiredSignatureError, InvalidTokenError
-from config import settings
+from src.config import settings
 
 
 expires_in = settings.expire_time

@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from config import settings
+from src.config import settings
 
 #Se declara el path de la base de datos
 database_url = settings.database_url

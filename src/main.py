@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from db import Base, engine
-from auth import router
+from src.db import Base, engine
+from src.auth import router
 
 # Se crean las tablas en la base de datos
 Base.metadata.create_all(bind=engine)
